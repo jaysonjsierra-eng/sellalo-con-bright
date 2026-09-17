@@ -4,3 +4,9 @@ work/
 *.zip
 .codex-remote-attachments/
 outputs/
+node_modules/
+.npm-cache/
+.env
+.env.*
+!.env.example
+npm-debug.log*
