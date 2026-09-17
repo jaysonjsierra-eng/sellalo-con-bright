@@ -1,0 +1,19 @@
+{
+  "name": "sellalo-con-bright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page de cotizacion para limpieza y sellado de techos de BrightPanel.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "dev": "node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "@fontsource/archivo-black": "5.3.0",
+    "@fontsource/dm-sans": "5.3.0",
+    "@solar-icons/static": "2.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
