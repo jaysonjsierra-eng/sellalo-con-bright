@@ -1,0 +1,6 @@
+.git/
+.vercel/
+work/
+*.zip
+.codex-remote-attachments/
+outputs/
