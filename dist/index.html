@@ -6,10 +6,13 @@
   <meta name="description" content="Cotiza limpieza, preparación y sellado profesional de techos en Puerto Rico.">
   <meta name="theme-color" content="#041c4f">
   <title>Séllalo con Bright | Cotización de sellado de techo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    @font-face { font-family:"Archivo Black"; src:url("assets/fonts/archivo-black-400.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
+    @font-face { font-family:"DM Sans"; src:url("assets/fonts/dm-sans-400.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
+    @font-face { font-family:"DM Sans"; src:url("assets/fonts/dm-sans-500.woff2") format("woff2"); font-style:normal; font-weight:500; font-display:swap; }
+    @font-face { font-family:"DM Sans"; src:url("assets/fonts/dm-sans-600.woff2") format("woff2"); font-style:normal; font-weight:600; font-display:swap; }
+    @font-face { font-family:"DM Sans"; src:url("assets/fonts/dm-sans-700.woff2") format("woff2"); font-style:normal; font-weight:700; font-display:swap; }
+    @font-face { font-family:"DM Sans"; src:url("assets/fonts/dm-sans-800.woff2") format("woff2"); font-style:normal; font-weight:800; font-display:swap; }
     :root { --navy:#041c4f; --blue:#0754cb; --cyan:#02b9ed; --lime:#dbff00; --ink:#071a42; --muted:#55708f; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -209,9 +212,9 @@
       <div class="shell">
         <div class="services-head"><p class="section-kicker">El proceso Bright</p><h2 class="section-title" aria-label="3 pasos. 1 techo protegido."><span class="process-first-line" aria-hidden="true"><span class="process-count">1</span><span class="process-copy"> pasos.</span></span><span class="process-copy process-second-line" aria-hidden="true">1 techo protegido.</span></h2><p>Preparamos cada superficie para que el sistema de sellado forme una barrera uniforme contra lluvia, humedad y sol.</p></div>
         <div class="service-grid">
-          <article class="service-card"><div class="service-icon" data-step="1"><img src="https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/broom.svg" alt="" aria-hidden="true"></div><h3>Limpieza</h3><p>Removemos sucio, hongos y residuos que afectan la adherencia.</p></article>
-          <article class="service-card"><div class="service-icon" data-step="2"><img src="https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/ruler-cross-pen.svg" alt="" aria-hidden="true"></div><h3>Preparación</h3><p>Atendemos grietas, uniones y puntos críticos antes de aplicar el sistema.</p></article>
-          <article class="service-card"><div class="service-icon" data-step="3"><img src="https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/paint-roller.svg" alt="" aria-hidden="true"></div><h3>Sellado</h3><p>Aplicamos una barrera continua para proteger toda la superficie.</p></article>
+          <article class="service-card"><div class="service-icon" data-step="1"><img src="assets/icons/broom.svg" alt="" aria-hidden="true"></div><h3>Limpieza</h3><p>Removemos sucio, hongos y residuos que afectan la adherencia.</p></article>
+          <article class="service-card"><div class="service-icon" data-step="2"><img src="assets/icons/ruler-cross-pen.svg" alt="" aria-hidden="true"></div><h3>Preparación</h3><p>Atendemos grietas, uniones y puntos críticos antes de aplicar el sistema.</p></article>
+          <article class="service-card"><div class="service-icon" data-step="3"><img src="assets/icons/paint-roller.svg" alt="" aria-hidden="true"></div><h3>Sellado</h3><p>Aplicamos una barrera continua para proteger toda la superficie.</p></article>
         </div>
         <div class="coverage">Servicio disponible en Puerto Rico</div>
       </div>
@@ -241,7 +244,7 @@
     const sealSection=document.querySelector('.seal-scroll');const sealStage=sealSection.querySelector('.seal-stage');const roller=sealStage.querySelector('.roller');
     const setProgress=()=>{const rect=sealSection.getBoundingClientRect();const distance=sealSection.offsetHeight-innerHeight;const progress=Math.max(0,Math.min(1,-rect.top/distance));const rollerHeight=roller.getBoundingClientRect().height||parseFloat(getComputedStyle(roller).width)*1.5;const rollerTop=progress*(sealStage.clientHeight+rollerHeight*.54);const coatingHeight=Math.max(0,Math.min(sealStage.clientHeight,rollerTop-rollerHeight*.247));sealSection.style.setProperty('--progress',progress.toFixed(3));sealSection.style.setProperty('--remaining',`${((1-progress)*100).toFixed(2)}%`);sealStage.style.setProperty('--roller-top',`${rollerTop.toFixed(1)}px`);sealStage.style.setProperty('--coating-height',`${coatingHeight.toFixed(1)}px`);};
     const protectionSection=document.querySelector('#proteccion');const rainLayer=protectionSection.querySelector('.rain-layer');
-    const dropIcon='https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/waterdrop.svg';
+    const dropIcon='assets/icons/waterdrop.svg';
     for(let index=0;index<38;index+=1){const drop=document.createElement('img');const lane=(index*47+11)%101;const size=18+(index*17)%39;const start=-210+(index*71)%285;drop.className='rain-drop';drop.src=dropIcon;drop.alt='';drop.style.setProperty('--x',`${lane}%`);drop.style.setProperty('--size',`${size}px`);drop.style.setProperty('--start',`${start}px`);drop.style.setProperty('--opacity',(0.15+(index%6)*0.035).toFixed(2));drop.dataset.distance=String(260+(index%8)*64);drop.dataset.drift=String(-22+(index%7)*7);rainLayer.appendChild(drop);}
     const drops=[...rainLayer.querySelectorAll('.rain-drop')];
     const setDrops=()=>{const rect=protectionSection.getBoundingClientRect();const progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;drops.forEach((drop,index)=>{const distance=Number(drop.dataset.distance);const drift=Number(drop.dataset.drift);drop.style.transform=`translate3d(${Math.round(progress*drift)}px,${Math.round(progress*distance)}px,0) rotate(${index%2?8:-8}deg)`;});};
