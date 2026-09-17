@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cotiza limpieza, preparación y sellado profesional de techos en Puerto Rico.">
+  <meta name="theme-color" content="#041c4f">
+  <title>Séllalo con Bright | Cotización de sellado de techo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#041c4f; --blue:#0754cb; --cyan:#02b9ed; --lime:#dbff00; --ink:#071a42; --muted:#55708f; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; overflow-x:hidden; background:#f6fbff; color:var(--ink); font-family:"DM Sans",sans-serif; }
+    button,input,select { font:inherit; }
+    .shell { width:min(1180px,calc(100% - 36px)); margin:auto; }
+    .topbar { position:absolute; z-index:20; inset:0 0 auto; color:#fff; }
+    .nav { height:84px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.22); }
+    .brand { display:flex; align-items:center; gap:10px; color:inherit; text-decoration:none; font-weight:900; letter-spacing:-.04em; }
+    .brand-mark { display:grid; place-items:center; width:40px; height:40px; border-radius:11px; background:var(--lime); color:var(--navy); font:24px/1 "Archivo Black"; }
+    .brand-name { font-size:20px; }
+    .brand-name span { color:var(--lime); }
+    .brand-logo { position:relative; display:block; width:220px; height:42px; overflow:hidden; }
+    .brand-logo img { position:absolute; left:-7px; top:-41px; display:block; width:234px; max-width:none; }
+    .nav-cta { padding:11px 18px; border:1px solid rgba(255,255,255,.55); border-radius:99px; color:#fff; text-decoration:none; font-weight:800; }
+
+    .seal-scroll { --progress:0; --remaining:100%; position:relative; height:190vh; background:var(--navy); }
+    .seal-stage { position:sticky; top:0; height:100vh; min-height:650px; overflow:hidden; display:grid; place-items:center; background:linear-gradient(rgba(4,28,79,.32),rgba(4,28,79,.4)),url("assets/goteras.png") center 72%/cover; }
+    .seal-stage::after { content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:linear-gradient(90deg,rgba(4,28,79,.85),transparent 35%,transparent 67%,rgba(4,28,79,.7)); }
+    .coating { position:absolute; z-index:0; inset:0 auto 0 0; width:calc(var(--progress)*100%); background:linear-gradient(110deg,rgba(234,249,255,.91),rgba(255,255,255,.98)); mix-blend-mode:screen; box-shadow:24px 0 55px rgba(219,255,0,.26); }
+    .roller { position:absolute; z-index:3; left:calc(var(--progress)*100%); top:58%; width:clamp(140px,18vw,235px); transform:translate(-52%,-50%) rotate(90deg); filter:drop-shadow(0 18px 22px rgba(0,0,0,.34)); }
+    .seal-title { position:relative; z-index:4; padding:0 20px; text-align:center; color:#fff; opacity:clamp(0,calc((var(--progress) - .16)*3.4),1); transform:translateY(calc((1 - var(--progress))*26px)); text-shadow:0 5px 30px rgba(0,17,58,.9); }
+    .seal-title small { display:block; color:var(--lime); font-weight:900; text-transform:uppercase; letter-spacing:.16em; }
+    .seal-title h1 { margin:10px 0; font:clamp(3.4rem,8vw,8rem)/.84 "Archivo Black"; letter-spacing:-.075em; text-transform:uppercase; }
+    .seal-title p { max-width:600px; margin:0 auto; font-size:clamp(1rem,2vw,1.3rem); font-weight:700; }
+    .scroll-hint { position:absolute; z-index:5; top:50%; left:50%; transform:translate(-50%,-50%) translateY(calc(var(--progress)*-8px)); color:#fff; font-size:12px; text-transform:uppercase; letter-spacing:.12em; white-space:nowrap; opacity:clamp(0,calc(1 - var(--progress)*18),1); transition:opacity .12s linear; pointer-events:none; text-shadow:0 2px 12px rgba(0,17,58,.9); }
+    .contact-reveal { position:relative; z-index:4; width:min(450px,calc(100% - 28px)); clip-path:inset(0 0 var(--remaining) 0 round 28px); opacity:max(.08,var(--progress)); }
+    .contact-reveal .reveal-brand { margin:4px 0 12px; color:var(--blue); font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
+    .seal-title .highlight { color:inherit; font-weight:700!important; font-style:italic; }
+    .reveal-cta { display:inline-flex; align-items:center; justify-content:center; min-height:52px; margin-top:24px; padding:0 24px; border-radius:99px; background:var(--lime); color:var(--navy); text-decoration:none; text-shadow:none; }
+
+    .quote-section { position:relative; padding:112px 0; color:#fff; background:linear-gradient(100deg,rgba(2,25,77,.98),rgba(2,46,126,.9) 58%,rgba(4,64,151,.72)),url("assets/inversion.png") center 68%/cover; }
+    .quote-grid { display:grid; grid-template-columns:1.02fr .78fr; gap:64px; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; padding:8px 13px; border:1px solid rgba(219,255,0,.5); border-radius:99px; color:var(--lime); background:rgba(219,255,0,.08); font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.08em; }
+    .eyebrow::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 14px var(--lime); }
+    .hero-title { margin:22px 0 20px; font:clamp(3rem,6vw,6rem)/.88 "Archivo Black"; letter-spacing:-.07em; text-transform:uppercase; }
+    .hero-title span { display:block; color:var(--lime); }
+    .hero-copy { max-width:570px; margin:0 0 28px; color:#d9ecff; font-size:clamp(1.05rem,1.7vw,1.28rem); line-height:1.55; }
+    .mini-proof { display:flex; gap:18px; flex-wrap:wrap; font-size:14px; font-weight:800; }
+    .mini-proof span { display:flex; align-items:center; gap:7px; }
+    .mini-proof i { display:grid; place-items:center; width:24px; height:24px; border-radius:50%; background:var(--lime); color:var(--navy); font-style:normal; }
+    .quote-card { position:relative; overflow:hidden; padding:28px; border-radius:28px; background:#fff; color:var(--ink); box-shadow:0 30px 90px rgba(0,16,55,.38); }
+    .quote-card::before { content:""; position:absolute; inset:0 0 auto; height:6px; background:linear-gradient(90deg,var(--lime),var(--cyan)); }
+    .quote-card h2 { margin:8px 0 6px; font:1.7rem/1.05 "Archivo Black"; letter-spacing:-.04em; }
+    .quote-card > p { margin:0 0 20px; color:var(--muted); }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .field { display:grid; gap:7px; margin-bottom:12px; }
+    .field label { font-size:14px; font-weight:800; }
+    .field input,.field select { width:100%; height:50px; padding:0 14px; border:1px solid #cad8e8; border-radius:12px; outline:none; background:#f8fbff; color:var(--ink); }
+    .field input:focus,.field select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(7,84,203,.12); }
+    .submit { width:100%; min-height:56px; border:0; border-radius:14px; background:var(--lime); color:var(--navy); font-weight:900; text-transform:uppercase; cursor:pointer; box-shadow:0 10px 26px rgba(177,213,0,.3); transition:.2s transform; }
+    .submit:hover { transform:translateY(-2px); }
+    .form-note { margin:12px 0 0!important; text-align:center; font-size:12px; }
+    .form-success { display:none; margin-top:14px; padding:16px; border-radius:14px; background:#ebffd2; color:#184800; font-weight:800; }
+    .form-success.show { display:block; }
+
+    .section { padding:110px 0; }
+    .section-kicker { margin:0 0 14px; color:var(--blue); font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
+    .section-title { margin:0; font:clamp(2.7rem,5vw,5.2rem)/.92 "Archivo Black"; letter-spacing:-.065em; text-transform:uppercase; }
+    .section-title span { color:var(--blue); }
+    .process-grid { display:grid; grid-template-columns:.88fr 1fr; gap:72px; align-items:center; }
+    .campaign-art { position:relative; overflow:hidden; border-radius:34px; box-shadow:0 28px 70px rgba(3,36,97,.18); transform:rotate(-1.5deg); }
+    .campaign-art img { display:block; width:100%; height:auto; }
+    .campaign-art::after { content:""; position:absolute; inset:0; border:2px solid rgba(219,255,0,.7); border-radius:34px; pointer-events:none; }
+    .steps { display:grid; gap:10px; margin:36px 0 0; padding:0; list-style:none; }
+    .step { display:grid; grid-template-columns:58px 1fr; gap:16px; align-items:center; padding:17px 18px; border:1px solid #d7e5f1; border-radius:20px; background:#fff; box-shadow:0 10px 30px rgba(2,45,116,.05); }
+    .step-num { display:grid; place-items:center; width:48px; height:48px; border-radius:15px; background:var(--navy); color:var(--lime); font:1.35rem "Archivo Black"; }
+    .step strong { display:block; font-size:1.05rem; }
+    .step p { margin:3px 0 0; color:var(--muted); line-height:1.45; }
+
+    .services { position:relative; overflow:hidden; background:var(--navy); color:#fff; }
+    .services::before { content:""; position:absolute; width:500px; height:500px; right:-160px; top:-230px; border-radius:50%; background:var(--cyan); filter:blur(140px); opacity:.18; }
+    .services .section-kicker { color:var(--lime); }
+    .services-head { position:relative; display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:46px; }
+    .services-head p { max-width:460px; margin:0; color:#bcd5ee; font-size:1.05rem; line-height:1.6; }
+    .service-grid { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .service-card { min-height:250px; padding:28px; border:1px solid rgba(255,255,255,.14); border-radius:24px; background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035)); }
+    .service-card .icon { display:grid; place-items:center; width:54px; height:54px; margin-bottom:42px; border-radius:16px; background:var(--lime); color:var(--navy); font:1.3rem "Archivo Black"; }
+    .service-card h3 { margin:0 0 10px; font:1.35rem "Archivo Black"; text-transform:uppercase; letter-spacing:-.035em; }
+    .service-card p { margin:0; color:#bcd5ee; line-height:1.55; }
+    .coverage { display:flex; align-items:center; justify-content:center; gap:14px; margin-top:34px; color:#d8e9f8; font-weight:700; }
+    .coverage::before,.coverage::after { content:""; width:48px; height:1px; background:rgba(219,255,0,.6); }
+
+    .final-cta { position:relative; overflow:hidden; padding:100px 0; background:var(--lime); }
+    .final-cta::after { content:"B"; position:absolute; right:-40px; top:-110px; color:rgba(4,28,79,.08); font:480px/1 "Archivo Black"; transform:rotate(-9deg); }
+    .final-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
+    .final-cta .section-title { max-width:780px; color:var(--navy); }
+    .dark-button { display:inline-flex; align-items:center; justify-content:center; min-height:64px; padding:0 28px; border-radius:99px; background:var(--navy); color:#fff; text-decoration:none; font-weight:900; text-transform:uppercase; box-shadow:0 15px 32px rgba(4,28,79,.22); }
+    footer { padding:26px 0; background:#03163f; color:#a8c1dd; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:14px; }
+    .footer-inner .brand { color:#fff; }
+    .sticky-cta { display:none; }
+
+    @media (max-width:860px) {
+      .nav-cta { display:none; }
+      .seal-stage::after { background:linear-gradient(rgba(4,28,79,.34),rgba(4,28,79,.58)); }
+      .roller { top:65%; width:150px; }
+      .seal-title h1 { font-size:clamp(3.2rem,17vw,5.7rem); }
+      .quote-grid,.process-grid { grid-template-columns:1fr; gap:42px; }
+      .quote-section,.section { padding:76px 0; }
+      .campaign-art { max-width:520px; margin:auto; }
+      .services-head { display:block; }
+      .services-head p { margin-top:20px; }
+      .service-grid { grid-template-columns:1fr; }
+      .service-card { min-height:0; }
+      .service-card .icon { margin-bottom:28px; }
+      .final-inner { grid-template-columns:1fr; }
+      .dark-button { justify-self:start; }
+      .sticky-cta { position:fixed; z-index:25; display:block; left:12px; right:12px; bottom:12px; padding:16px; border-radius:99px; background:var(--lime); color:var(--navy); text-align:center; text-decoration:none; font-weight:900; text-transform:uppercase; box-shadow:0 12px 32px rgba(0,21,64,.28); }
+      footer { padding-bottom:92px; }
+    }
+    @media (max-width:480px) {
+      .shell { width:min(100% - 24px,1180px); }
+      .nav { height:72px; }
+      .brand-name { font-size:17px; }
+      .quote-card { padding:22px; }
+      .field-row { grid-template-columns:1fr; }
+      .mini-proof { gap:10px 16px; }
+      .footer-inner { align-items:flex-start; flex-direction:column; }
+    }
+    /* BrightPanel official brand palette */
+    :root { --navy:#161746; --blue:#004f52; --cyan:#55b6b3; --lime:#e5e146; --ink:#161746; --muted:#5b637a; }
+    .seal-stage { --roller-width:clamp(140px,18vw,235px); --roller-top:0px; --coating-height:0px; background:linear-gradient(rgba(22,23,70,.2),rgba(22,23,70,.32)),url("assets/roof-cracks-cream.png") center/cover; }
+    .seal-stage::after { background:linear-gradient(90deg,rgba(22,23,70,.42),transparent 35%,transparent 67%,rgba(22,23,70,.36)); }
+    .coating { inset:0 0 auto; width:100%; height:var(--coating-height); clip-path:polygon(0 0,100% 0,100% 98.6%,97% 99.4%,94% 98.2%,91% 99.7%,88% 98.8%,85% 99.5%,82% 98.1%,79% 99.3%,76% 98.6%,73% 99.8%,70% 98.4%,67% 99.2%,64% 98%,61% 99.6%,58% 98.7%,55% 99.4%,52% 98.2%,49% 99.8%,46% 98.5%,43% 99.3%,40% 98.1%,37% 99.6%,34% 98.7%,31% 99.4%,28% 98.2%,25% 99.8%,22% 98.5%,19% 99.2%,16% 98%,13% 99.6%,10% 98.6%,7% 99.4%,4% 98.2%,0 99.5%); box-shadow:0 24px 55px rgba(229,225,70,.26); filter:drop-shadow(0 8px 9px rgba(255,255,255,.35)); }
+    .roller { z-index:6; left:50%; top:var(--roller-top); width:var(--roller-width); transform:translate(-50%,-52%); }
+    .quote-section { background:linear-gradient(100deg,rgba(22,23,70,.98),rgba(0,79,82,.91) 58%,rgba(85,182,179,.72)),url("assets/inversion.png") center 68%/cover; }
+    .services,footer { background:#161746; }
+    .form-success { background:#eff6c7; color:#004f52; }
+    body * { font-family:"DM Sans",sans-serif!important; font-weight:400!important; }
+    h1,h2,h3 { font-weight:700!important; }
+    .services { background:linear-gradient(135deg,#161746 0%,#004f52 100%); }
+    .services-head { display:block; max-width:850px; margin:0 auto 52px; text-align:center; }
+    .services-head p { margin:20px auto 0; }
+    .service-grid::before { content:""; position:absolute; left:12%; right:12%; top:62px; height:2px; background:#e5e146; opacity:.7; }
+    .service-card { position:relative; z-index:1; min-height:320px; padding:30px; border:1px solid rgba(229,225,70,.5); background:rgba(255,255,255,.97); color:var(--navy); box-shadow:0 24px 60px rgba(0,0,0,.16); }
+    .service-card::after { content:""; position:absolute; inset:auto 22px 0; height:5px; border-radius:9px 9px 0 0; background:linear-gradient(90deg,var(--lime),var(--cyan)); }
+    .service-icon { position:relative; display:grid; place-items:center; width:82px; height:82px; margin:0 auto 34px; border-radius:24px; background:var(--lime); }
+    .service-icon img { width:46px; height:46px; }
+    .service-icon::after { content:attr(data-step); position:absolute; inset:0; display:grid; place-items:center; color:var(--navy); }
+    .service-card h3 { color:var(--navy); text-align:center; font-size:1.45rem; }
+    .service-card p { color:var(--muted); text-align:center; }
+    .services-head .section-title { display:flex; flex-direction:column; align-items:center; font-size:clamp(2.8rem,5vw,5.2rem); }
+    .process-first-line { display:flex; align-items:baseline; justify-content:center; white-space:nowrap; }
+    .process-count { display:inline-block; min-width:.72em; text-align:center; transform-origin:center; }
+    .process-copy { display:inline-block; }
+    .process-count,.process-first-line .process-copy,.process-second-line { font-weight:700!important; }
+    .services-head .section-title .process-count,.services-head .section-title .process-first-line .process-copy { color:#fff; }
+    .services-head .section-title .process-second-line { display:block; margin-top:.03em; color:var(--lime); }
+    .services.motion-ready .process-copy,.services.motion-ready .services-head > p:last-child { opacity:0; transform:translateY(10px); transition:opacity .36s ease,transform .36s ease; }
+    .services.motion-ready .services-head.is-complete .process-copy,.services.motion-ready .services-head.is-complete > p:last-child { opacity:1; transform:none; }
+    .process-count.tick { animation:count-tick .28s ease; }
+    @keyframes count-tick { 0% { opacity:.15; transform:translateY(-12px) scale(.8); } 100% { opacity:1; transform:none; } }
+    .service-icon img { transition:opacity .3s ease,transform .38s ease; }
+    .service-icon::after { font-size:2.55rem; opacity:0; transform:scale(.55) rotate(-10deg); transition:opacity .3s ease,transform .38s cubic-bezier(.2,.8,.2,1); }
+    .services.motion-ready .service-card h3,.services.motion-ready .service-card > p { opacity:0; transform:translateY(12px); transition:opacity .36s ease .12s,transform .36s ease .12s; }
+    .service-card.is-counted .service-icon img { opacity:0; transform:scale(.5) rotate(12deg); }
+    .service-card.is-counted .service-icon::after { opacity:1; transform:none; }
+    .services.motion-ready .service-card.is-counted h3,.services.motion-ready .service-card.is-counted > p { opacity:1; transform:none; }
+    .final-cta { background:linear-gradient(90deg,rgba(229,225,70,.96) 0%,rgba(229,225,70,.88) 52%,rgba(229,225,70,.44) 100%),url("assets/sealed-water.png") center/cover; }
+    .final-cta::after { content:none; }
+    .final-inner { z-index:3; }
+    .rain-layer { position:absolute; z-index:2; inset:0; overflow:hidden; pointer-events:none; }
+    .rain-drop { position:absolute; top:var(--start); left:var(--x); width:var(--size); height:var(--size); opacity:var(--opacity); pointer-events:none; filter:brightness(0) saturate(100%) invert(10%) sepia(31%) saturate(2144%) hue-rotate(204deg) brightness(81%); will-change:transform; }
+    .contact-section { padding:96px 0; background:linear-gradient(135deg,#55b6b3 0%,#004f52 100%); }
+    .contact-grid { display:grid; grid-template-columns:1fr 450px; gap:64px; align-items:center; }
+    .contact-copy { color:#fff; }
+    .contact-copy .section-kicker { color:var(--lime); }
+    .contact-copy p { max-width:560px; color:rgba(255,255,255,.82); font-size:1.08rem; line-height:1.65; }
+    .seal-title { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:88px 20px 44px; color:var(--navy); clip-path:inset(0 0 var(--remaining) 0); opacity:1; transform:none; transition:clip-path .06s linear; text-shadow:0 2px 18px rgba(255,255,255,.88); }
+    .seal-title small { color:var(--blue); }
+    .scroll-hint { color:var(--navy); text-shadow:0 2px 12px rgba(255,255,255,.9); }
+    @media (max-width:860px) { .contact-grid { grid-template-columns:1fr; gap:36px; } .contact-grid .quote-card { width:100%; } .services-head .section-title { font-size:clamp(2.35rem,10.5vw,4rem); line-height:.95; } }
+    @media (max-width:860px) { .service-grid::before { display:none; } .service-card { min-height:0; } }
+    @media (max-width:860px) { .seal-stage { --roller-width:150px; } .seal-stage::after { background:linear-gradient(rgba(22,23,70,.18),rgba(22,23,70,.4)); } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .submit { transition:none; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav shell">
+      <a class="brand" href="#inicio" aria-label="BrightPanel — inicio"><span class="brand-logo"><img src="assets/brightpanel-logo.png" alt="BrightPanel"></span></a>
+      <a class="nav-cta" href="#cotiza">Cotiza gratis</a>
+    </div>
+  </header>
+  <main>
+    <section class="seal-scroll" id="inicio" aria-label="Rodillo sellando un techo">
+      <div class="seal-stage">
+        <div class="coating"></div>
+        <img class="roller" src="assets/roller.png" alt="Rodillo aplicando sellador blanco sobre un techo">
+        <div class="seal-title"><small>Séllalo con Bright</small><h1>¡En Puerto Rico,<br>un buen <span class="highlight">sellado</span><br>lo cambia <span class="highlight">TODO!</span></h1><a class="reveal-cta" href="#cotiza">Cotiza gratis →</a></div>
+        <span class="scroll-hint">Desliza para sellar ↓</span>
+      </div>
+    </section>
+
+    <section class="section services" id="servicios">
+      <div class="shell">
+        <div class="services-head"><p class="section-kicker">El proceso Bright</p><h2 class="section-title" aria-label="3 pasos. 1 techo protegido."><span class="process-first-line" aria-hidden="true"><span class="process-count">1</span><span class="process-copy"> pasos.</span></span><span class="process-copy process-second-line" aria-hidden="true">1 techo protegido.</span></h2><p>Preparamos cada superficie para que el sistema de sellado forme una barrera uniforme contra lluvia, humedad y sol.</p></div>
+        <div class="service-grid">
+          <article class="service-card"><div class="service-icon" data-step="1"><img src="https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/broom.svg" alt="" aria-hidden="true"></div><h3>Limpieza</h3><p>Removemos sucio, hongos y residuos que afectan la adherencia.</p></article>
+          <article class="service-card"><div class="service-icon" data-step="2"><img src="https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/ruler-cross-pen.svg" alt="" aria-hidden="true"></div><h3>Preparación</h3><p>Atendemos grietas, uniones y puntos críticos antes de aplicar el sistema.</p></article>
+          <article class="service-card"><div class="service-icon" data-step="3"><img src="https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/paint-roller.svg" alt="" aria-hidden="true"></div><h3>Sellado</h3><p>Aplicamos una barrera continua para proteger toda la superficie.</p></article>
+        </div>
+        <div class="coverage">Servicio disponible en Puerto Rico</div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="proteccion">
+      <div class="rain-layer" aria-hidden="true"></div>
+      <div class="final-inner shell"><div><h2 class="section-title">Protege tu techo antes que sea muy tarde.</h2></div><a class="dark-button" href="#cotiza">Cotiza gratis →</a></div>
+    </section>
+    <section class="contact-section" id="cotiza">
+      <div class="contact-grid shell">
+        <div class="contact-copy"><p class="section-kicker">Cotización sin compromiso</p><h2 class="section-title">Hablemos de tu techo.</h2><p>Déjanos tus datos y coordinamos una inspección para conocer la condición de la superficie y recomendarte el próximo paso.</p></div>
+        <form class="quote-card" id="quote-form" novalidate>
+          <h2>Solicita tu inspección</h2><p>Te contactamos para coordinarla.</p>
+          <div class="field"><label for="name">Nombre y apellido</label><input id="name" name="name" autocomplete="name" required placeholder="Tu nombre"></div>
+          <div class="field-row"><div class="field"><label for="phone">Teléfono</label><input id="phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(787) 000-0000"></div><div class="field"><label for="town">Municipio</label><input id="town" name="town" autocomplete="address-level2" required placeholder="Ej. Caguas"></div></div>
+          <div class="field"><label for="property">Tipo de propiedad</label><select id="property" name="property" required><option value="">Selecciona una opción</option><option>Residencia</option><option>Comercio</option><option>Condominio</option><option>Otro</option></select></div>
+          <button class="submit" type="submit">Quiero mi cotización gratis →</button>
+          <p class="form-note">Al enviar, autorizas que nuestro equipo te contacte.</p><div class="form-success" role="status" aria-live="polite">¡Recibido! Nos comunicaremos contigo pronto.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer><div class="footer-inner shell"><a class="brand" href="#inicio" aria-label="BrightPanel — inicio"><span class="brand-logo"><img src="assets/brightpanel-logo.png" alt="BrightPanel"></span></a><span>© 2026 Séllalo con Bright</span></div></footer>
+  <a class="sticky-cta" href="#cotiza">Cotiza gratis →</a>
+  <script>
+    const sealSection=document.querySelector('.seal-scroll');const sealStage=sealSection.querySelector('.seal-stage');const roller=sealStage.querySelector('.roller');
+    const setProgress=()=>{const rect=sealSection.getBoundingClientRect();const distance=sealSection.offsetHeight-innerHeight;const progress=Math.max(0,Math.min(1,-rect.top/distance));const rollerHeight=roller.getBoundingClientRect().height||parseFloat(getComputedStyle(roller).width)*1.5;const rollerTop=progress*(sealStage.clientHeight+rollerHeight*.54);const coatingHeight=Math.max(0,Math.min(sealStage.clientHeight,rollerTop-rollerHeight*.247));sealSection.style.setProperty('--progress',progress.toFixed(3));sealSection.style.setProperty('--remaining',`${((1-progress)*100).toFixed(2)}%`);sealStage.style.setProperty('--roller-top',`${rollerTop.toFixed(1)}px`);sealStage.style.setProperty('--coating-height',`${coatingHeight.toFixed(1)}px`);};
+    const protectionSection=document.querySelector('#proteccion');const rainLayer=protectionSection.querySelector('.rain-layer');
+    const dropIcon='https://cdn.jsdelivr.net/npm/@solar-icons/static/dist/icons/linear/waterdrop.svg';
+    for(let index=0;index<38;index+=1){const drop=document.createElement('img');const lane=(index*47+11)%101;const size=18+(index*17)%39;const start=-210+(index*71)%285;drop.className='rain-drop';drop.src=dropIcon;drop.alt='';drop.style.setProperty('--x',`${lane}%`);drop.style.setProperty('--size',`${size}px`);drop.style.setProperty('--start',`${start}px`);drop.style.setProperty('--opacity',(0.15+(index%6)*0.035).toFixed(2));drop.dataset.distance=String(260+(index%8)*64);drop.dataset.drift=String(-22+(index%7)*7);rainLayer.appendChild(drop);}
+    const drops=[...rainLayer.querySelectorAll('.rain-drop')];
+    const setDrops=()=>{const rect=protectionSection.getBoundingClientRect();const progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;drops.forEach((drop,index)=>{const distance=Number(drop.dataset.distance);const drift=Number(drop.dataset.drift);drop.style.transform=`translate3d(${Math.round(progress*drift)}px,${Math.round(progress*distance)}px,0) rotate(${index%2?8:-8}deg)`;});};
+    const servicesSection=document.querySelector('#servicios');const servicesHead=servicesSection.querySelector('.services-head');const processCount=servicesSection.querySelector('.process-count');const serviceGrid=servicesSection.querySelector('.service-grid');const serviceCards=[...servicesSection.querySelectorAll('.service-card')];let lastProcessStep=0;servicesSection.classList.add('motion-ready');
+    const setServices=()=>{const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const headTop=servicesHead.getBoundingClientRect().top;const countDistance=Math.max(0,innerHeight*.82-headTop);const step=reduced?3:Math.max(1,Math.min(3,Math.floor(countDistance/90)+1));if(step!==lastProcessStep){processCount.textContent=String(step);processCount.classList.remove('tick');void processCount.offsetWidth;processCount.classList.add('tick');lastProcessStep=step;}servicesHead.classList.toggle('is-complete',step===3);if(reduced){serviceCards.forEach(card=>card.classList.add('is-counted'));return;}if(innerWidth>860){const depth=innerHeight*.70-serviceGrid.getBoundingClientRect().top;const interval=Math.max(100,innerHeight*.14);serviceCards.forEach((card,index)=>card.classList.toggle('is-counted',depth>=index*interval));}else{serviceCards.forEach(card=>card.classList.toggle('is-counted',card.getBoundingClientRect().top<=innerHeight*.66));}};
+    const updateMotion=()=>{setProgress();setDrops();setServices();};addEventListener('scroll',updateMotion,{passive:true});addEventListener('resize',updateMotion);roller.addEventListener('load',updateMotion,{once:true});updateMotion();
+    document.querySelector('#quote-form').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;if(!form.checkValidity()){form.reportValidity();return}form.querySelector('.form-success').classList.add('show');form.querySelector('.submit').textContent='Solicitud recibida ✓';});
+  </script>
+</body>
+</html>
