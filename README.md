@@ -84,4 +84,4 @@ La versión actual valida los campos y muestra una confirmación en el navegador
 
 Las versiones están fijadas en `package.json`. Durante `npm run build`, los recursos necesarios se copian dentro de `dist/assets/`; la página publicada no depende de Google Fonts ni de un CDN de iconos.
 
-Consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) para las atribuciones de terceros.
+Consulta [NOTICE.md](NOTICE.md) para las atribuciones de terceros.
